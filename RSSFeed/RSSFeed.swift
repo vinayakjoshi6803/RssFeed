@@ -7,87 +7,18 @@
 //
 
 import Foundation
+import CoreData
 
 enum XMLField : String {
-    case ITEM = "item", TITLE = "title", DESCRIPTION = "description", LINK = "link"
+    case ITEM = "item", TITLE = "title", DESCRIPTION = "description", LINK = "imageUrl"
 }
 
-public class Event: NSObject {
-   dynamic var title: String!
-   dynamic var descriptions: String!
-   dynamic var link: String!
+public class Event: NSManagedObject {
+   @NSManaged var title: String!
+   @NSManaged var descriptions: String!
+   @NSManaged var imageUrl: String!
 }
 
-class EventParser: NSOperation, NSXMLParserDelegate {
-   
-    private var isItemStart = false
-    private var strFieldValue: String = ""
-    private var event: Event!
-    private var nsxmlParser: NSXMLParser!
-    lazy var events : [Event] = [Event]()
-
-    convenience init(data: NSData) {
-        self.init()
-        
-        nsxmlParser = NSXMLParser.init(data: data)
-        nsxmlParser.delegate = self
-        nsxmlParser.parse()
-    }
-    
-    func parser(parser: NSXMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String]) {
-       
-        switch elementName as XMLField.RawValue {
-        
-        case XMLField.ITEM.rawValue:
-                isItemStart = true
-                self.event = Event()
-            break
-        default:
-            break
-        }
-        
-    }
-    
-    func parser(parser: NSXMLParser, foundCharacters string: String) {
-        if !isItemStart {return}
-        
-        strFieldValue += string
-    }
-    
-    func parser(parser: NSXMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
-        
-        if !isItemStart {return}
-        
-        switch elementName as XMLField.RawValue {
-            
-        case XMLField.ITEM.rawValue:
-            isItemStart = false
-            break
-        case XMLField.TITLE.rawValue:
-            self.event.title = strFieldValue
-            break
-        case XMLField.DESCRIPTION.rawValue:
-            self.event.descriptions = strFieldValue
-            break
-        case XMLField.LINK.rawValue:
-            self.event.link = strFieldValue
-            break
-            
-        default:
-            break
-        }
-        strFieldValue=""
-        self.events.append(event)
-    }
-    
-    func parserDidEndDocument(parser: NSXMLParser) {
-        addEventsToStorage()
-    }
-    
-    private func addEventsToStorage(){
-        
-    }
-}
 
 class RSSFeed: NSObject {
 
@@ -105,7 +36,6 @@ class RSSFeed: NSObject {
                 if (error != nil || response == nil) {
                     return
                 }
-                
                 let event = EventParser(data: data!)
                 self.parseQueue.addOperation(event)
             })

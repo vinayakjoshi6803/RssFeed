@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		652272311CC6F3FD008F1F9D /* EventParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652272301CC6F3FD008F1F9D /* EventParser.swift */; };
+		654B7D671CC6E3FE0026FDCB /* RSSCoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 654B7D661CC6E3FE0026FDCB /* RSSCoreDataManager.swift */; };
 		654D2E2E1CC5965100AC1DB8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 654D2E2D1CC5965100AC1DB8 /* AppDelegate.swift */; };
 		654D2E311CC5965100AC1DB8 /* RSSFeed.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 654D2E2F1CC5965100AC1DB8 /* RSSFeed.xcdatamodeld */; };
 		654D2E331CC5965100AC1DB8 /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 654D2E321CC5965100AC1DB8 /* MasterViewController.swift */; };
@@ -37,6 +39,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		652272301CC6F3FD008F1F9D /* EventParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventParser.swift; sourceTree = "<group>"; };
+		654B7D661CC6E3FE0026FDCB /* RSSCoreDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSSCoreDataManager.swift; sourceTree = "<group>"; };
 		654D2E2A1CC5965100AC1DB8 /* RSSFeed.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RSSFeed.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		654D2E2D1CC5965100AC1DB8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		654D2E301CC5965100AC1DB8 /* RSSFeed.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = RSSFeed.xcdatamodel; sourceTree = "<group>"; };
@@ -104,6 +108,7 @@
 			isa = PBXGroup;
 			children = (
 				654D2E2D1CC5965100AC1DB8 /* AppDelegate.swift */,
+				654B7D661CC6E3FE0026FDCB /* RSSCoreDataManager.swift */,
 				654D2E321CC5965100AC1DB8 /* MasterViewController.swift */,
 				654D2E341CC5965100AC1DB8 /* DetailViewController.swift */,
 				654D2E361CC5965100AC1DB8 /* Main.storyboard */,
@@ -112,6 +117,7 @@
 				654D2E3E1CC5965100AC1DB8 /* Info.plist */,
 				654D2E2F1CC5965100AC1DB8 /* RSSFeed.xcdatamodeld */,
 				655A38691CC5D6EE006B04B0 /* RSSFeed.swift */,
+				652272301CC6F3FD008F1F9D /* EventParser.swift */,
 			);
 			path = RSSFeed;
 			sourceTree = "<group>";
@@ -265,9 +271,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				652272311CC6F3FD008F1F9D /* EventParser.swift in Sources */,
 				654D2E311CC5965100AC1DB8 /* RSSFeed.xcdatamodeld in Sources */,
 				654D2E2E1CC5965100AC1DB8 /* AppDelegate.swift in Sources */,
 				654D2E331CC5965100AC1DB8 /* MasterViewController.swift in Sources */,
+				654B7D671CC6E3FE0026FDCB /* RSSCoreDataManager.swift in Sources */,
 				655A386A1CC5D6EE006B04B0 /* RSSFeed.swift in Sources */,
 				654D2E351CC5965100AC1DB8 /* DetailViewController.swift in Sources */,
 			);
