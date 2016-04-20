@@ -193,17 +193,17 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
     }
 
     func controllerDidChangeContent(controller: NSFetchedResultsController) {
-        self.tableView.endUpdates()
+        self.tableView.reloadData()
     }
 
-    /*
+   
      // Implementing the above methods to update the table view in response to individual changes may have performance implications if a large number of changes are made simultaneously. If this proves to be an issue, you can instead just implement controllerDidChangeContent: which notifies the delegate that all section and object changes have been processed.
      
-     func controllerDidChangeContent(controller: NSFetchedResultsController) {
-         // In the simplest, most efficient, case, reload the table view.
-         self.tableView.reloadData()
-     }
-     */
+//     func controllerDidChangeContent(controller: NSFetchedResultsController) {
+//         // In the simplest, most efficient, case, reload the table view.
+//         self.tableView.reloadData()
+//     }
+    
 
 }
 
