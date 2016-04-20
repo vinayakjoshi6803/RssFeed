@@ -14,13 +14,11 @@ class RSSServiceManager:NSObject{
         self.init()
         
         let sessionTask = NSURLSession.sharedSession().dataTaskWithURL(url, completionHandler: { (data: NSData?,response: NSURLResponse?,error: NSError?) in
-            
-            NSOperationQueue.mainQueue().addOperationWithBlock({
                 if (error != nil || response == nil) {
                     failure(error: error)
-                }
-                success(data: data)
-            })
+                }else {
+                    success(data: data)
+            }
         })
         sessionTask.resume()
     }

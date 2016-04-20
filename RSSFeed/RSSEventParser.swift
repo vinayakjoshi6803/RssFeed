@@ -93,20 +93,4 @@ class RSSEventParser: NSOperation, NSXMLParserDelegate {
         RSSCoreDataManager.sharedManager.saveContext()
  
     }
-    
-    private func fetch() {
-        let moc = RSSCoreDataManager.sharedManager.managedObjectContext
-        let personFetch = NSFetchRequest(entityName: "Event")
-        
-        do {
-            let feeds = try moc.executeFetchRequest(personFetch) as! [RSSEvent]
-            
-            for event in feeds {
-                print(event.title!)
-            }
-            
-        } catch {
-            fatalError("Failed to fetch person: \(error)")
-        }
-    }
 }
