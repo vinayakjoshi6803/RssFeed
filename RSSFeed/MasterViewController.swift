@@ -40,12 +40,10 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
     }
 
     func reloadData(notification: NSNotification){
-        NSOperationQueue.mainQueue().addOperationWithBlock({
-
         
         //Take Action on Notification
         do {
-            try self.fetchedResultsController.performFetch()
+            try _fetchedResultsController!.performFetch()
             self.tableView.reloadData()
 
         } catch {
@@ -53,7 +51,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
             // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
             //print("Unresolved error \(error), \(error.userInfo)")
             abort()
-            }})
+            }
         
     }
     // MARK: - Table View
@@ -93,16 +91,6 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
                 abort()
             }
         }
-    }
-
-    func configureCell(cell: UITableViewCell, withObject object: NSManagedObject) {
-        
-        if let feed = object as? RSSEvent {
-            let trimmed = feed.title.stringByReplacingOccurrencesOfString("^\\s*",
-                                                                      withString: "", options: .RegularExpressionSearch)
-            cell.textLabel!.text = trimmed
-        }
-        
     }
 
     // MARK: - Fetched results controller
@@ -165,15 +153,14 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
                 tableView.insertRowsAtIndexPaths([newIndexPath!], withRowAnimation: .Fade)
             case .Delete:
                 tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: .Fade)
-            case .Update:
-                self.configureCell(tableView.cellForRowAtIndexPath(indexPath!)!, withObject: anObject as! NSManagedObject)
+            case .Update: break
             case .Move:
                 tableView.moveRowAtIndexPath(indexPath!, toIndexPath: newIndexPath!)
         }
     }
 
     func controllerDidChangeContent(controller: NSFetchedResultsController) {
-        self.tableView.reloadData()
+        self.tableView.endUpdates()
     }
     
 }
