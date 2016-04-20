@@ -9,11 +9,13 @@
 import Foundation
 import CoreData
 
+
+// XMLField defines the element keys in the xml
 enum XMLField : String {
-    case ITEM = "item", TITLE = "title", DESCRIPTION = "description", LINK = "imageUrl"
+    case ITEM = "item", TITLE = "title", DESCRIPTION = "description", LINK = "link"
 }
 
-public class Event: NSManagedObject {
+public class RSSEvent: NSManagedObject {
    @NSManaged var title: String!
    @NSManaged var descriptions: String!
    @NSManaged var imageUrl: String!
@@ -24,24 +26,25 @@ class RSSFeed: NSObject {
 
     let baseURL = "http://feeds.reuters.com/reuters/MostRead"
     let parseQueue = NSOperationQueue()
-    lazy var events : [Event] = [Event]()
+    lazy var events : [RSSEvent] = [RSSEvent]()
     var sessionTask: NSURLSessionDataTask!
     
     func loadFeed(){
     
         let url = NSURL(string: baseURL)
-        self.sessionTask = NSURLSession.sharedSession().dataTaskWithURL(url!, completionHandler: { (data: NSData?,response: NSURLResponse?,error: NSError?) in
-           
-            NSOperationQueue.mainQueue().addOperationWithBlock({ 
-                if (error != nil || response == nil) {
-                    return
-                }
-                let event = EventParser(data: data!)
+        
+        _ = RSSServiceManager.init(url: url!, success: { (data) in
+            
+            NSOperationQueue.mainQueue().addOperationWithBlock({
+                let event = RSSEventParser(data: data!)
                 self.parseQueue.addOperation(event)
             })
         })
-        
-        self.sessionTask.resume()
+        { (error) in
+            print(error)
+        }
     }
-    
 }
+
+
+

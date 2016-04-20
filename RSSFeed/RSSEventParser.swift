@@ -9,13 +9,13 @@
 import Foundation
 import CoreData
 
-class EventParser: NSOperation, NSXMLParserDelegate {
+class RSSEventParser: NSOperation, NSXMLParserDelegate {
     
     private var isItemStart = false
     private var strFieldValue: String = ""
-    private var event: Event!
+    private var event: RSSEvent!
     private var nsxmlParser: NSXMLParser!
-    lazy var events : [Event] = [Event]()
+    lazy var events : [RSSEvent] = [RSSEvent]()
     
     convenience init(data: NSData) {
         self.init()
@@ -32,7 +32,7 @@ class EventParser: NSOperation, NSXMLParserDelegate {
         case XMLField.ITEM.rawValue:
             isItemStart = true
             let entity = NSEntityDescription.entityForName("Event", inManagedObjectContext: RSSCoreDataManager.sharedManager.managedObjectContext )
-            self.event = Event.init(entity: entity!, insertIntoManagedObjectContext: nil)// Event.init(entity: entity!, insertIntoManagedObjectContext: nil)
+            self.event = RSSEvent.init(entity: entity!, insertIntoManagedObjectContext: nil)// Event.init(entity: entity!, insertIntoManagedObjectContext: nil)
             
             break
         default:
@@ -74,8 +74,11 @@ class EventParser: NSOperation, NSXMLParserDelegate {
     }
     
     func parserDidEndDocument(parser: NSXMLParser) {
-        addEventsToStorage()
-        fetch()
+        
+        NSOperationQueue.mainQueue().addOperationWithBlock({
+            self.addEventsToStorage()
+        })
+        
     }
     
     private func addEventsToStorage(){
@@ -96,7 +99,7 @@ class EventParser: NSOperation, NSXMLParserDelegate {
         let personFetch = NSFetchRequest(entityName: "Event")
         
         do {
-            let feeds = try moc.executeFetchRequest(personFetch) as! [Event]
+            let feeds = try moc.executeFetchRequest(personFetch) as! [RSSEvent]
             
             for event in feeds {
                 print(event.title!)

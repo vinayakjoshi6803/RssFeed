@@ -9,13 +9,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "RSSFeed/RSSCoreDataManager.swift"
-            timestampString = "482804457.434334"
+            filePath = "RSSFeed/RSSFeed.swift"
+            timestampString = "482818817.272145"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "80"
-            endingLineNumber = "80"
-            landmarkName = "deleteOldFeeds(_:)"
+            startingLineNumber = "44"
+            endingLineNumber = "44"
+            landmarkName = "loadFeed()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -25,13 +25,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "RSSFeed/RSSCoreDataManager.swift"
-            timestampString = "482804458.727202"
+            filePath = "RSSFeed/MasterViewController.swift"
+            timestampString = "482820041.41401"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "86"
-            endingLineNumber = "86"
-            landmarkName = "deleteOldFeeds(_:)"
+            startingLineNumber = "44"
+            endingLineNumber = "44"
+            landmarkName = "reloadData(_:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

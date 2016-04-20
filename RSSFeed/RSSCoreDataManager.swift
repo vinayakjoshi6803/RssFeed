@@ -12,6 +12,8 @@ import CoreData
 class RSSCoreDataManager: NSObject {
     
     // MARK: - Core Data stack
+    
+    // Shared datamanager
     static let sharedManager = RSSCoreDataManager()
 
     lazy var applicationDocumentsDirectory: NSURL = {
@@ -65,6 +67,8 @@ class RSSCoreDataManager: NSObject {
         if managedObjectContext.hasChanges {
             do {
                 try managedObjectContext.save()
+                NSNotificationCenter.defaultCenter().postNotificationName("RSSFeeds_Saved", object: nil)
+
             } catch {
                 // Replace this implementation with code to handle the error appropriately.
                 // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
@@ -74,7 +78,7 @@ class RSSCoreDataManager: NSObject {
             }
         }
     }
-    
+    // Deleting old feeds
     func deleteOldFeeds(entity: String)  {
         do {
             let moc = RSSCoreDataManager.sharedManager.managedObjectContext
