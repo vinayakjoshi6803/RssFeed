@@ -18,9 +18,14 @@ enum XMLField : String {
 public class RSSEvent: NSManagedObject {
    @NSManaged var title: String!
    @NSManaged var descriptions: String!
-   @NSManaged var imageUrl: String!
+   @NSManaged var linkURL: String!
 }
 
+//
+//public protocol RSSFeedDelegate {
+//    // protocol definition goes here
+//    func eventsLoaded(events: [RSSEvent])
+//}
 
 class RSSFeed: NSObject {
 
@@ -28,7 +33,8 @@ class RSSFeed: NSObject {
     let parseQueue = NSOperationQueue()
     lazy var events : [RSSEvent] = [RSSEvent]()
     var sessionTask: NSURLSessionDataTask!
-    
+//    internal var delegate: RSSFeedDelegate?
+
     func loadFeed(){
     
         let url = NSURL(string: baseURL)

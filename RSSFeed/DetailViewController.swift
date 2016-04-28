@@ -10,25 +10,35 @@ import UIKit
 
 class DetailViewController: UIViewController {
 
-    @IBOutlet weak var detailDescriptionLabel: UILabel!
+    @IBOutlet private weak var webEventDetail: UIWebView!
 
-
-    var detailItem: AnyObject? {
+    var rssEvent: RSSEvent? {
         didSet {
             // Update the view.
             self.configureView()
         }
     }
 
-    func configureView() {
+    private func configureView() {
         // Update the user interface for the detail item.
-        if let detail = self.detailItem {
-            if let label = self.detailDescriptionLabel {
-                label.text = detail.valueForKey("timeStamp")!.description
-            }
+        if let link = rssEvent?.linkURL!.removelineBrakes() {
+            loadURL(link)
+        }
+        if let title = rssEvent?.title.removelineBrakes(){
+            self.title = title
         }
     }
-
+    // loading the link in webview
+    private func loadURL(rssLink: String!){
+        if  let url = NSURL.init(string: rssLink.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!){
+            let request = NSURLRequest(URL: url)
+            webEventDetail?.loadRequest(request)
+            webEventDetail?.scalesPageToFit = true
+            webEventDetail?.contentMode = UIViewContentMode.ScaleAspectFit
+        }
+     }
+    
+    // MARK: ViewController lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.

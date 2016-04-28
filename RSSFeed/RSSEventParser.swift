@@ -19,7 +19,6 @@ class RSSEventParser: NSOperation, NSXMLParserDelegate {
     
     convenience init(data: NSData) {
         self.init()
-        
         nsxmlParser = NSXMLParser.init(data: data)
         nsxmlParser.delegate = self
         nsxmlParser.parse()
@@ -52,7 +51,6 @@ class RSSEventParser: NSOperation, NSXMLParserDelegate {
         if !isItemStart {return}
         
         switch elementName as XMLField.RawValue {
-            
         case XMLField.ITEM.rawValue:
             isItemStart = false
             self.events.append(event)
@@ -64,7 +62,7 @@ class RSSEventParser: NSOperation, NSXMLParserDelegate {
             self.event.descriptions = strFieldValue
             break
         case XMLField.LINK.rawValue:
-            self.event.imageUrl = strFieldValue
+            self.event.linkURL = strFieldValue
             break
             
         default:
@@ -78,19 +76,15 @@ class RSSEventParser: NSOperation, NSXMLParserDelegate {
         NSOperationQueue.mainQueue().addOperationWithBlock({
             self.addEventsToStorage()
         })
-        
     }
     
     private func addEventsToStorage(){
         // create an instance of our managedObjectContext
         let moc = RSSCoreDataManager.sharedManager.managedObjectContext
         RSSCoreDataManager.sharedManager.deleteOldFeeds("Event")
-
         for event in self.events {
                 moc.insertObject(event)
         }
-        
         RSSCoreDataManager.sharedManager.saveContext()
- 
     }
 }
