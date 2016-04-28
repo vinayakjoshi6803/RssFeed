@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		652272311CC6F3FD008F1F9D /* RSSEventParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652272301CC6F3FD008F1F9D /* RSSEventParser.swift */; };
+		654394151CD190B000CBA732 /* RSSEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 654394141CD190B000CBA732 /* RSSEvent.swift */; };
 		654B7D671CC6E3FE0026FDCB /* RSSCoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 654B7D661CC6E3FE0026FDCB /* RSSCoreDataManager.swift */; };
 		654D2E2E1CC5965100AC1DB8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 654D2E2D1CC5965100AC1DB8 /* AppDelegate.swift */; };
 		654D2E311CC5965100AC1DB8 /* RSSFeed.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 654D2E2F1CC5965100AC1DB8 /* RSSFeed.xcdatamodeld */; };
@@ -44,6 +45,7 @@
 
 /* Begin PBXFileReference section */
 		652272301CC6F3FD008F1F9D /* RSSEventParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSSEventParser.swift; sourceTree = "<group>"; };
+		654394141CD190B000CBA732 /* RSSEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSSEvent.swift; sourceTree = "<group>"; };
 		654B7D661CC6E3FE0026FDCB /* RSSCoreDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSSCoreDataManager.swift; sourceTree = "<group>"; };
 		654D2E2A1CC5965100AC1DB8 /* RSSFeed.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RSSFeed.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		654D2E2D1CC5965100AC1DB8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -128,6 +130,7 @@
 				654D2E3E1CC5965100AC1DB8 /* Info.plist */,
 				654D2E2F1CC5965100AC1DB8 /* RSSFeed.xcdatamodeld */,
 				655A38691CC5D6EE006B04B0 /* RSSFeed.swift */,
+				654394141CD190B000CBA732 /* RSSEvent.swift */,
 				6585D0DF1CC736450055D2E7 /* RSSServiceManager.swift */,
 				652272301CC6F3FD008F1F9D /* RSSEventParser.swift */,
 			);
@@ -294,6 +297,7 @@
 				655A386A1CC5D6EE006B04B0 /* RSSFeed.swift in Sources */,
 				654D2E351CC5965100AC1DB8 /* DetailViewController.swift in Sources */,
 				6585D0D71CC7243A0055D2E7 /* RSSEventCell.swift in Sources */,
+				654394151CD190B000CBA732 /* RSSEvent.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -15,25 +15,19 @@ enum XMLField : String {
     case ITEM = "item", TITLE = "title", DESCRIPTION = "description", LINK = "link"
 }
 
-public class RSSEvent: NSManagedObject {
-   @NSManaged var title: String!
-   @NSManaged var descriptions: String!
-   @NSManaged var linkURL: String!
-}
-
 //
 //public protocol RSSFeedDelegate {
 //    // protocol definition goes here
 //    func eventsLoaded(events: [RSSEvent])
 //}
 
-class RSSFeed: NSObject {
+public class RSSFeed: NSObject {
 
     let baseURL = "http://feeds.reuters.com/reuters/MostRead"
     let parseQueue = NSOperationQueue()
     lazy var events : [RSSEvent] = [RSSEvent]()
     var sessionTask: NSURLSessionDataTask!
-//    internal var delegate: RSSFeedDelegate?
+//    public var delegate: RSSFeedDelegate?
 
     func loadFeed(){
     
