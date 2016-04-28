@@ -41,6 +41,7 @@ class DetailViewController: UIViewController {
     // MARK: ViewController lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(netowrkError(_:)), name:"NetworkError", object: nil)
         // Do any additional setup after loading the view, typically from a nib.
         self.configureView()
     }
@@ -48,6 +49,12 @@ class DetailViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+
+    func netowrkError(notification: NSNotification){
+        let alert = UIAlertController.init(title: "RSSFeed", message: "Network Error", preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+        self.presentViewController(alert, animated: true, completion: nil)
     }
 
 

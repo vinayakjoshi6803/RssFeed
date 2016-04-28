@@ -16,6 +16,8 @@ class RSSServiceManager:NSObject{
         let sessionTask = NSURLSession.sharedSession().dataTaskWithURL(url, completionHandler: { (data: NSData?,response: NSURLResponse?,error: NSError?) in
                 if (error != nil || response == nil) {
                     failure(error: error)
+                    NSNotificationCenter.defaultCenter().postNotificationName("NetworkError", object: nil)
+
                 }else {
                     success(data: data)
             }

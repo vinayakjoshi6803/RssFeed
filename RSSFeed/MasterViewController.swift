@@ -17,8 +17,8 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(MasterViewController.reloadData(_:)), name:"RSSFeeds_Saved", object: nil)
-        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(reloadData(_:)), name:"RSSFeeds_Saved", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(netowrkError(_:)), name:"NetworkError", object: nil)
         // Do any additional setup after loading the view, typically from a nib.
        if let split = self.splitViewController {
             let controllers = split.viewControllers
@@ -36,6 +36,12 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func netowrkError(notification: NSNotification){
+        let alert = UIAlertController.init(title: "RSSFeed", message: "Network Error", preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+        self.presentViewController(alert, animated: true, completion: nil)
     }
 
     func reloadData(notification: NSNotification){
@@ -141,7 +147,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         
         return _fetchedResultsController!
     }    
-    var _fetchedResultsController: NSFetchedResultsController? = nil
+    private var _fetchedResultsController: NSFetchedResultsController? = nil
 
     func controllerWillChangeContent(controller: NSFetchedResultsController) {
         self.tableView.beginUpdates()
