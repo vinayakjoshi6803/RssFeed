@@ -78,7 +78,7 @@ class RSSCoreDataManager: NSObject {
             }
         }
     }
-    // Deleting old feeds
+    // Deleting old feeds iff new feeds are available
     func deleteOldFeeds(entity: String)  {
         do {
             let moc = RSSCoreDataManager.sharedManager.managedObjectContext

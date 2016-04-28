@@ -13,7 +13,6 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
 
     var detailViewController: DetailViewController? = nil
     var managedObjectContext: NSManagedObjectContext? = nil
-    var events : [RSSEvent]!
 
     override func viewDidLoad() {
         super.viewDidLoad()
