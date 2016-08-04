@@ -9,7 +9,7 @@
 import Foundation
 import CoreData
 
-class RSSEventParser: NSOperation, NSXMLParserDelegate {
+class RSSEventParser: NSObject, NSXMLParserDelegate {
     
     private var isItemStart = false
     private var strFieldValue: String = ""

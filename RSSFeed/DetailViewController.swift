@@ -30,7 +30,8 @@ class DetailViewController: UIViewController {
     }
     // loading the link in webview
     private func loadURL(rssLink: String!){
-        if  let url = NSURL.init(string: rssLink.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!){
+        
+        if  let url = NSURL.init(string: rssLink.stringByAddingPercentEncodingWithAllowedCharacters( NSCharacterSet.URLQueryAllowedCharacterSet())!){
             let request = NSURLRequest(URL: url)
             webEventDetail?.loadRequest(request)
             webEventDetail?.scalesPageToFit = true

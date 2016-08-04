@@ -8,18 +8,21 @@
 
 import Foundation
 // RSSServiceManager: takes url as input pull the repsonse and returns to the calles
-class RSSServiceManager:NSObject{
+class RSSServiceManager{
     
     convenience init(url:NSURL, success: (data: NSData?)-> Void, failure:(error: NSError?)-> Void){
         self.init()
         
         let sessionTask = NSURLSession.sharedSession().dataTaskWithURL(url, completionHandler: { (data: NSData?,response: NSURLResponse?,error: NSError?) in
-                if (error != nil || response == nil) {
-                    failure(error: error)
-                    NSNotificationCenter.defaultCenter().postNotificationName("NetworkError", object: nil)
-
-                }else {
-                    success(data: data)
+            
+            if (error != nil ){
+                failure(error: error)
+                NSNotificationCenter.defaultCenter().postNotificationName("NetworkError", object: nil)
+            }else if ( response == nil){
+                failure(error: error)
+                NSNotificationCenter.defaultCenter().postNotificationName("Server error/ no response", object: nil)
+            }else{
+                success(data: data)
             }
         })
         sessionTask.resume()
